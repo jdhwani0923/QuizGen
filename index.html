@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>QuizGen AI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <div class="header">
+        <h1>✨ QuizGen AI</h1>
+        <p>Create smart quizzes instantly</p>
+    </div>
+
+    <div class="card">
+
+        <div class="input-group">
+            <label>📌 Topic</label>
+            <input id="topic" placeholder="Enter topic">
+        </div>
+
+        <div class="input-group">
+            <label>📝 Description</label>
+            <textarea id="description" placeholder="Enter notes..."></textarea>
+        </div>
+
+        <!-- PDF Upload -->
+<div class="upload-box" onclick="document.getElementById('pdfFile').click()">
+    📄 Click to Upload PDF
+    <p id="fileName">No file selected</p>
+</div>
+
+<input type="file" id="pdfFile" accept="application/pdf" style="display:none;">
+
+        <!-- OPTIONS -->
+        <div class="options-row">
+
+            <div class="option-box">
+                <label>Difficulty</label>
+                <select id="difficulty">
+                    <option>easy</option>
+                    <option selected>medium</option>
+                    <option>hard</option>
+                </select>
+            </div>
+
+            <div class="option-box">
+                <label>Questions</label>
+                <select id="questionCount">
+                    <option>5</option>
+                    <option>10</option>
+                    <option>15</option>
+                    <option selected>25</option>
+                </select>
+            </div>
+
+            <div class="option-box">
+                <label>Type</label>
+                <select id="type">
+                    <option value="mcq">MCQ</option>
+                    <option value="truefalse">True/False</option>
+                    <option value="fill">Fill in the blanks</option>
+                    <option value="mixed" selected>Mixed</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button class="generate-btn" onclick="generateQuiz(this)">🚀 Generate Quiz</button>
+
+    </div>
+
+    <!-- LOADER -->
+    <div id="loader" class="loader hidden">
+        <div class="spinner"></div>
+        Generating...
+    </div>
+
+    <!-- QUIZ OUTPUT -->
+    <div id="quizPreview" class="preview"></div>
+
+   
+
+    <!-- HISTORY -->
+    <div class="history-section">
+        <h3>🕘 History</h3>
+        <div id="historyList"></div>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
